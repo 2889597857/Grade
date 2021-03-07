@@ -1,26 +1,36 @@
 <template>
-  <el-rate v-model="rate" :colors="colors" allow-half :change="change(rate)">
+  <el-rate
+    v-model="rate"
+    :colors="colors"
+    allow-half
+    :change="change(rate, id)"
+    :disabled="isRate"
+  >
   </el-rate>
 </template>
 
 <script>
+  import { ref, inject } from 'vue';
   export default {
     props: {
-      rate: {
-        default: 0,
-      },
+      id: Number
     },
     setup () {
-      function change (params) {
-        console.log(params)
+      let rate = ref(0)
+      const isRate = inject('isRate')
+      function change (params, id) {
+        const Rate = {
+          teacherID: id,
+          rate: params
+        }
+        if (isRate.value) {
+          console.log(Rate)
+        }
       }
       return {
         colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
-        change
+        change, rate, isRate
       }
     }
   }
 </script>
-
-<style>
-</style>

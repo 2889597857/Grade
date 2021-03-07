@@ -11,5 +11,8 @@ export default defineConfig({
       view: path.resolve(__dirname, 'src/view'),
       styles: path.resolve(__dirname, 'src/styles'),
     }
+  },
+  server: {
+    proxy: {}
   }
 })

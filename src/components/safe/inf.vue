@@ -1,5 +1,5 @@
 <template>
-  <div class="information">
+  <div class="information www">
     <div class="information-header">
       <span>用户信息</span>
     </div>
@@ -66,9 +66,6 @@
     width: 50%;
     height: 450px;
     padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
-    border-radius: 10px;
     position: relative;
     .information-header {
       height: 60px;

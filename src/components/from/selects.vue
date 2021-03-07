@@ -1,0 +1,58 @@
+<template>
+  <div class="select">
+    <!-- <div style="width: 130px">
+      <el-select v-model="year" size="small" placeholder="请选择学年">
+        <el-option
+          v-for="item in years"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+    </div> -->
+    <div style="width: 130px">
+      <el-select v-model="obj" size="small" placeholder="请选择日期">
+        <el-option
+          v-for="item in objs"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { ref, toRefs, reactive, watch, inject } from 'vue';
+  export default {
+    setup () {
+      const state = reactive({
+        years: [{ value: 2021, label: 2021 }, { value: 2020, label: 2020 }, { value: 2019, label: 2019 }],
+        objs: [{ value: 0, label: '第一次考试' }, { value: 1, label: '第二次考试' }, { value: 2, label: '第三次考试' }, { value: 3, label: '第四次考试' }],
+      })
+      let year = ref('')
+      let obj = ref('')
+      const findG = inject('findG')
+      watch(obj, value => {
+        findG(value)
+      })
+
+      return {
+        ...toRefs(state), year, obj
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scope>
+  .select {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px auto;
+  }
+</style>

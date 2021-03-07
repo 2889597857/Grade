@@ -1,6 +1,5 @@
 <template>
-  <div class="rate-table">
-    <div class="rate-title">教师评分</div>
+  <myTemplate :title="'教师评分'">
     <div class="rate-content">
       <div class="rate-table-title">
         <ul>
@@ -10,69 +9,73 @@
         </ul>
       </div>
       <div class="rate-table-content">
-        <ul v-for="item in Rate" :key="item">
+        <ul v-for="(item, index) in Rate" :key="index">
           <li>{{ item.name }}</li>
           <li>{{ item.obj }}</li>
-          <li><start :rate="item.rate" :id="item.id" /></li>
+          <li>
+            <start :rate="item.rate" :id="item.id" />
+          </li>
         </ul>
       </div>
     </div>
-    <goback />
-  </div>
+    <el-button @click="isRate = !isRate" type="primary">{{
+      btnName
+    }}</el-button>
+  </myTemplate>
 </template>
 
 <script>
   import start from "./start.vue";
-  import goback from "../safe/goback.vue";
+  import myTemplate from "../Template/Template.vue";
+  import { ref, provide, computed, } from 'vue';
   export default {
-    components: { start, goback },
+    components: { start, myTemplate },
     setup () {
+      let Rate = [
+        { name: '李新', obj: '英语', rate: 0, id: 0 },
+        { name: '王建国', obj: '语文', rate: 0, id: 1 },
+        { name: '王婷婷', obj: '数学', rate: 0, id: 2 },
+        { name: '张杰', obj: '地理', rate: 0, id: 3 },
+      ]
+      const RateTeacher = () => { }
+      let isRate = ref(true)
+      provide('isRate', isRate)
+      let btnName = computed(() => {
+        if (isRate.value) {
+          return '评分'
+        } else {
+          return '保存'
+        }
+      })
       return {
-        Rate: [
-          { name: '李新', obj: '英语', rate: 0, id: 0 },
-          { name: '王建国', obj: '语文', rate: 0, id: 1 },
-          { name: '王婷婷', obj: '数学', rate: 0, id: 2 },
-        ]
+        Rate, RateTeacher, btnName, isRate
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .rate-table {
-    position: relative;
-    width: 650px;
-    height: 700px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
-    border-radius: 10px;
-    padding: 50px 10px;
-    .rate-title {
-      font-size: 20px;
-      font-weight: 700;
+  .rate-content {
+    width: 600px;
+    margin: 0 auto 50px;
+    ul {
       height: 50px;
-    }
-    .rate-content {
-      ul {
-        height: 50px;
+      display: flex;
+      font-size: 14px;
+      line-height: 50px;
+      border-bottom: 1.5px solid #ebeef5;
+      li {
+        width: 200px;
         display: flex;
-        font-size: 14px;
-        line-height: 50px;
-        border-bottom: 1.5px solid #ebeef5;
-        li {
-          width: 200px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+        justify-content: center;
+        align-items: center;
       }
-      .rate-table-content {
-        ul {
-          cursor: pointer;
-          &:hover {
-            background-color: #f5f7fa;
-          }
+    }
+    .rate-table-content {
+      ul {
+        cursor: pointer;
+        &:hover {
+          background-color: #f5f7fa;
         }
       }
     }

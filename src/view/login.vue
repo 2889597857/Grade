@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <div class="login">
+    <div class="login www">
       <div class="login-content">
         <div class="title">登录</div>
         <el-form
@@ -103,11 +103,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #ffffff;
       width: 400px;
       height: 350px;
-      box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
-      border-radius: 10px;
       padding: 50px 0;
       .login-content {
         width: 100%;

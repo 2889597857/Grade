@@ -20,7 +20,7 @@
 
 <style lang="scss" scoped>
   #home {
-    width: 70%;
+    width: 75%;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;

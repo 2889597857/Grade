@@ -1,5 +1,5 @@
 <template>
-  <div class="change">
+  <div class="change www">
     <div class="change-password">
       <div class="change-title">
         <span>更改密码</span>
@@ -124,9 +124,7 @@
         font-weight: 700;
         height: 50px;
       }
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
-      border-radius: 10px;
+
       padding: 40px 40px;
     }
   }

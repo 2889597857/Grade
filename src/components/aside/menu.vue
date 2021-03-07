@@ -7,7 +7,7 @@
         background-color="#283848"
         text-color="#fff"
         active-text-color="#ffd04b"
-        router="true"
+        :router="true"
       >
         <el-submenu index="1">
           <template #title>

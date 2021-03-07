@@ -23,6 +23,16 @@ export default [
                 path: "/rate",
                 name: "rate",
                 component: () => import('com/rate/rate.vue')
+            },
+            {
+                path: "/find",
+                name: "find",
+                component: () => import('com/find/find.vue')
+            },
+            {
+                path: "/analysis",
+                name: "analysis",
+                component: () => import('com/analysis/analysis.vue')
             }
         ]
     },
