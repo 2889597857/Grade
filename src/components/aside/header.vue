@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <img alt="Vue logo" src="@/assets/logo.png" />
-    <p>张三</p>
+    <p>{{ inf.name }}</p>
     <el-col :span="8">
       <el-dropdown>
         <span class="el-dropdown-link">
-          学生<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ inf.role }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -22,35 +22,41 @@
     </el-col>
   </div>
 </template>
- 
-<script>
-  export default {
 
-  }
+<script>
+import { inject } from "vue";
+export default {
+  setup() {
+    const inf = inject("inf");
+    return {
+      inf,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    width: 100%;
-    height: 240px;
-    color: #fff;
-    font-size: 16px;
-    line-height: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    img {
-      cursor: pointer;
-      width: 150px;
-      height: 150px;
-    }
-  }
-  .el-dropdown-link {
+.header {
+  width: 100%;
+  height: 240px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  img {
     cursor: pointer;
-    font-size: 14px;
+    width: 150px;
+    height: 150px;
   }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
+}
+.el-dropdown-link {
+  cursor: pointer;
+  font-size: 14px;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
 </style>

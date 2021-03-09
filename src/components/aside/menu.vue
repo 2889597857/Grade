@@ -1,4 +1,3 @@
-
 <template>
   <el-row class="tac">
     <el-col :span="24">
@@ -22,8 +21,5 @@
 </template>
 
 <script setup>
-  import item from "./item.vue";
+import item from "./item.vue";
 </script>
-
-<style lang="scss" scoped>
-</style>
