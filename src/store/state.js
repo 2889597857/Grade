@@ -15,7 +15,7 @@ export default {
         role: '老师',
         teachRoute: [{
             name: "成绩录入",
-            route: "/rate"
+            route: "/resultInput"
         }, {
             name: "成绩查询",
             route: "/find"

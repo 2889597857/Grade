@@ -24,6 +24,13 @@ li {
 	box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
 	border-radius: 10px;
 }
+
+.ul-hover {
+	cursor: pointer;
+	&:hover {
+		background-color: #f5f7fa;
+	}
+}
 ::-webkit-scrollbar-track-piece {
 	//滚动条凹槽的颜色，还可以设置边框属性
 	background-color: #f8f8f8;

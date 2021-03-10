@@ -33,7 +33,17 @@ export default [
                 path: "/analysis",
                 name: "analysis",
                 component: () => import('com/analysis/analysis.vue')
-            }
+            },
+            {
+                path: "/history",
+                name: "history",
+                component: () => import('com/history/history.vue')
+            },
+            {
+                path: "/resultInput",
+                name: "resultInput",
+                component: () => import('com/resultInput/resultInput.vue')
+            },
         ]
     },
     {
