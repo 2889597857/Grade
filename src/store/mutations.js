@@ -1,5 +1,5 @@
 export default {
-    dy (state, id) {
-        console.log(id)
+    addHis (state, id) {
+        state.history.push(id)
     }
 }

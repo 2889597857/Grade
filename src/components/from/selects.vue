@@ -26,33 +26,39 @@
 </template>
 
 <script>
-  import { ref, toRefs, reactive, watch, inject } from 'vue';
-  export default {
-    setup () {
-      const state = reactive({
-        years: [{ value: 2021, label: 2021 }, { value: 2020, label: 2020 }, { value: 2019, label: 2019 }],
-        objs: [{ value: 0, label: '第一次考试' }, { value: 1, label: '第二次考试' }, { value: 2, label: '第三次考试' }, { value: 3, label: '第四次考试' }],
-      })
-      let year = ref('')
-      let obj = ref('')
-      const findG = inject('findG')
-      watch(obj, value => {
-        findG(value)
-      })
-
-      return {
-        ...toRefs(state), year, obj
-      }
-    }
-  }
+import { ref, toRefs, reactive, watch, inject, onMounted } from "vue";
+export default {
+  setup() {
+    const state = reactive({
+      objs: [
+        { value: 0, label: "第一次考试" },
+        { value: 1, label: "第二次考试" },
+        { value: 2, label: "第三次考试" },
+        { value: 3, label: "第四次考试" },
+      ],
+    });
+    let obj = ref("第四次考试");
+    const findG = inject("findG");
+    watch(obj, (value) => {
+      findG(value);
+    });
+    onMounted(() => {
+      findG(3);
+    });
+    return {
+      ...toRefs(state),
+      obj,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scope>
-  .select {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 20px auto;
-  }
+.select {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px auto;
+}
 </style>

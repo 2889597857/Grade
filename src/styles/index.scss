@@ -25,10 +25,31 @@ li {
 	border-radius: 10px;
 }
 
-.ul-hover {
-	cursor: pointer;
-	&:hover {
-		background-color: #f5f7fa;
+.history {
+	.history-title li {
+		color: #303133;
+	}
+	.history-content li {
+		color: #606266;
+	}
+
+	.history-content ul {
+		cursor: pointer;
+		&:hover {
+			background-color: #f5f7fa;
+		}
+	}
+	ul {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 650px;
+		height: 50px;
+		border-bottom: 1.5px solid #ebeef5;
+		margin: 0 auto;
+		li {
+			width: 80px;
+		}
 	}
 }
 ::-webkit-scrollbar-track-piece {
