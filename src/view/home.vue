@@ -14,7 +14,7 @@
 <script setup>
 import MyAside from "com/aside/aside.vue";
 import MyMain from "com/main/main.vue";
-import { provide } from "vue";
+import { onMounted, provide } from "vue";
 import { useStore } from "vuex";
 const store = useStore();
 const inf = store.state.information;

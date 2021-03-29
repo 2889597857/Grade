@@ -86,7 +86,6 @@ const submitForm = () => {
       stu.id = "";
       stu.name = "";
       open1();
-      console.log(his.value);
     } else {
       return false;
     }

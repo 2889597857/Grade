@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 function nowTime () {
     const date = new Date()
 
@@ -16,8 +18,17 @@ function isTen (params) {
 }
 
 
+function setCookie (value, name = 'token', time = 7) {
+    Cookies.set(name, value, { expires: time, path: '/' });
+}
+function getCookie (params = 'token') {
+    return Cookies.get(params)
+}
 
+function removeCookie (params = 'token') {
+    Cookies.remove(params)
+}
 
 export {
-    nowTime
+    nowTime, setCookie, getCookie, removeCookie
 }

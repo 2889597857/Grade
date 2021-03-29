@@ -1,14 +1,5 @@
 export default {
-    stuRoute: [{
-        name: "教师评分",
-        route: "/rate"
-    }, {
-        name: "成绩查询",
-        route: "/find"
-    }, {
-        name: "成绩分析",
-        route: "/analysis"
-    }],
+
     information: {
         jurisdiction: 1,
         name: '李四',

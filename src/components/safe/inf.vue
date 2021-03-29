@@ -4,7 +4,7 @@
       <span>用户信息</span>
     </div>
     <div class="information-container">
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form label-width="80px">
         <el-form-item label="账号:">
           <el-input v-model="acc" :disabled="true"></el-input>
         </el-form-item>
@@ -30,48 +30,50 @@
 </template>
 
 <script>
-  import { computed, ref } from 'vue'
-  import goback from './goback.vue'
+import { computed, ref, inject } from "vue";
+import goback from "./goback.vue";
 
-  export default {
-    components: { goback },
-    setup () {
-      function changeInf () {
-        readonly.value = !readonly.value
-      }
-
-      let readonly = ref(true)
-      let btnName = computed(() => {
-        if (readonly.value) {
-          return '修改'
-        } else {
-          return '保存'
-        }
-      })
-      return {
-        acc: ref('Admin'),
-        name: ref('张三'),
-        jurisdiction: ref('管理员'),
-        email: ref('2123@qq.com'),
-        phone: ref('198 1234 5678'),
-        btnName, changeInf, readonly
-      }
+export default {
+  components: { goback },
+  setup() {
+    function changeInf() {
+      readonly.value = !readonly.value;
     }
-  }
+    const inf = inject("inf");
+    let readonly = ref(true);
+    let btnName = computed(() => {
+      if (readonly.value) {
+        return "修改";
+      } else {
+        return "保存";
+      }
+    });
+    return {
+      acc: ref("Admin"),
+      name: inf.name,
+      jurisdiction: inf.role,
+      email: inf.email,
+      phone: inf.phone,
+      btnName,
+      changeInf,
+      readonly,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .information {
-    margin: 0 auto;
-    width: 50%;
-    height: 450px;
-    padding: 10px 20px;
-    position: relative;
-    .information-header {
-      height: 60px;
-      line-height: 60px;
-      font-size: 18px;
-      font-weight: 700;
-    }
+.information {
+  margin: 0 auto;
+  width: 50%;
+  height: 450px;
+  padding: 10px 20px;
+  position: relative;
+  .information-header {
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 700;
   }
+}
 </style>

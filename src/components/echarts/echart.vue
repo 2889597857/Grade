@@ -19,11 +19,13 @@ const { options } = toRefs(props);
 
 onMounted(() => {
   chart.value = echarts.init(container.value);
+  chart.value.clear();
   chart.value.setOption(props.options);
 });
 watch(
   options,
   (newOptions) => {
+    chart.value.clear();
     chart.value.setOption(newOptions);
   },
   { deep: true }

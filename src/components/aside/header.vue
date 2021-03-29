@@ -15,7 +15,7 @@
             <el-dropdown-item>
               <router-link to="/change">修改密码 </router-link>
             </el-dropdown-item>
-            <el-dropdown-item divided>安全退出</el-dropdown-item>
+            <el-dropdown-item divided @click="out">安全退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -23,15 +23,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { useRouter } from "vue-router";
+import { removeCookie } from "@/lib/utils.js";
 import { inject } from "vue";
-export default {
-  setup() {
-    const inf = inject("inf");
-    return {
-      inf,
-    };
-  },
+const inf = inject("inf");
+const router = useRouter();
+const out = () => {
+  removeCookie();
+  router.push("/login");
+  console.log(123);
 };
 </script>
 

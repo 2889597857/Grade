@@ -1,28 +1,27 @@
 <template>
   <myTemplate :title="'成绩分析'">
-    <eLine />
-    <eRadar />
+    <component :is="component"></component>
   </myTemplate>
 </template>
 
 <script>
-  import myTemplate from "../Template/Template.vue";
-  import eLine from "../echarts/line.vue";
-  import eRadar from '../echarts/radar.vue';
-  import { provide } from 'vue';
-  export default {
-    components: { myTemplate, eLine, eRadar },
-    setup () {
-      const grade = [
-        [79, 89, 89, 70, 77, 94, 88],
-        [85, 90, 83, 80, 97, 84, 79],
-        [90, 79, 88, 83, 78, 89, 90],
-        [88, 93, 95, 80, 87, 96, 96],
-      ]
-      provide('grade', grade)
-    }
-  }
+import myTemplate from "../Template/Template.vue";
+import stu from "./stu.vue";
+import tea from "./tea.vue";
+import { onMounted, inject, ref } from "vue";
+export default {
+  components: { myTemplate, stu, tea },
+  setup() {
+    let component = ref("stu");
+    const jurisdiction = inject("inf").jurisdiction;
+    onMounted(() => {
+      if (!jurisdiction) {
+        component.value = "stu";
+      } else {
+        component.value = "tea";
+      }
+    });
+    return { component };
+  },
+};
 </script>
-
-<style>
-</style>

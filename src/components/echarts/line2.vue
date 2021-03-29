@@ -8,7 +8,6 @@
 import { inject } from "vue";
 import echart from "./echart.vue";
 const grade = inject("grade");
-console.log(grade);
 const sss = (id) => {
   let result = [];
   for (let index = 0; index < grade.length; index++) {

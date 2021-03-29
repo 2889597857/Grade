@@ -74,7 +74,7 @@ export default {
 
     onMounted(() => {
       const myChart = echarts.init(echartLine.value);
-      myChart.clear();
+      // myChart.clear();
       myChart.setOption(option);
     });
 
