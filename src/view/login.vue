@@ -12,15 +12,18 @@
               type="password"
               v-model="ruleForm.checkPass"
               autocomplete="off"
+              @keyup.enter="submitForm()"
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" size="small" @click="submitForm('ruleForm')"
-              >登录</el-button
-            >
-            <el-button size="small" @click="resetForm('ruleForm')">重置</el-button>
+            <el-button type="primary" size="small" @click="submitForm()">登录</el-button>
+            <el-button size="small" @click="resetForm()">重置</el-button>
           </el-form-item>
         </el-form>
+        <div class="tips">
+          <p>*老师账号：0 密码：0</p>
+          <p>*学生账号：1 密码：1</p>
+        </div>
       </div>
     </div>
   </div>
@@ -66,9 +69,13 @@ function submitForm(formName) {
       const a = parseFloat(this.ruleForm.pass);
       const b = parseFloat(this.ruleForm.checkPass);
       if (a == 1 && b == 1) {
-        store.commit("get", 1);
-        setCookie(1);
-        router.push("/");
+        store
+          .dispatch("login", 1)
+          .then((result) => {
+            setCookie(1);
+            router.push("/");
+          })
+          .catch((err) => {});
       } else if (a == 0 && b == 0) {
         store.commit("get", 0);
         setCookie(0);
@@ -108,6 +115,12 @@ function resetForm(formName) {
       justify-content: space-between;
       align-items: center;
     }
+  }
+}
+.tips {
+  p {
+    font-size: 14px;
+    color: red;
   }
 }
 </style>

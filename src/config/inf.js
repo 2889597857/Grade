@@ -1,11 +1,6 @@
 function getInf (params) {
     if (params) {
         return {
-            jurisdiction: 0,
-            name: '张三',
-            role: '学生',
-            email: '213@qq.com',
-            phone: "123 456 7890",
             Route: [{
                 name: "教师评分",
                 route: "/rate"
@@ -19,12 +14,6 @@ function getInf (params) {
         }
     } else {
         return {
-            jurisdiction: 1,
-            name: '李四',
-            role: '老师',
-            object: '语文',
-            email: '123@qq.com',
-            phone: "098 765 4321",
             Route: [{
                 name: "成绩录入",
                 route: "/resultInput"

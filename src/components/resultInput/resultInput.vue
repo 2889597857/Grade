@@ -72,6 +72,7 @@ const his = ref([]);
 provide("his", his);
 const result = ref(null);
 const submitForm = () => {
+  console.log(123);
   result.value.validate((valid) => {
     if (valid) {
       his.value.push({

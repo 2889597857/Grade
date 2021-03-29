@@ -49,11 +49,12 @@ export default {
       }
     });
     return {
-      acc: ref("Admin"),
+      acc: inf.id,
       name: inf.name,
       jurisdiction: inf.role,
       email: inf.email,
       phone: inf.phone,
+
       btnName,
       changeInf,
       readonly,

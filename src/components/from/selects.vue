@@ -42,9 +42,6 @@ export default {
     watch(obj, (value) => {
       findG(value);
     });
-    onMounted(() => {
-      findG(3);
-    });
     return {
       ...toRefs(state),
       obj,
