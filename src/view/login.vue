@@ -69,17 +69,9 @@ function submitForm(formName) {
       const a = parseFloat(this.ruleForm.pass);
       const b = parseFloat(this.ruleForm.checkPass);
       if (a == 1 && b == 1) {
-        store
-          .dispatch("login", 1)
-          .then((result) => {
-            setCookie(1);
-            router.push("/");
-          })
-          .catch((err) => {});
+        sgin(1);
       } else if (a == 0 && b == 0) {
-        store.commit("get", 0);
-        setCookie(0);
-        router.push("/");
+        sgin(0);
       } else {
         alert("账号或密码错误");
       }
@@ -88,7 +80,15 @@ function submitForm(formName) {
     }
   });
 }
-
+function sgin(id) {
+  store
+    .dispatch("login", id)
+    .then((result) => {
+      setCookie(1);
+      router.push("/");
+    })
+    .catch((err) => {});
+}
 function resetForm(formName) {
   login.value.resetFields();
 }

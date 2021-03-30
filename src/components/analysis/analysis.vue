@@ -15,7 +15,7 @@ export default {
     let component = ref("stu");
     const jurisdiction = inject("inf").jurisdiction;
     onMounted(() => {
-      if (!jurisdiction) {
+      if (jurisdiction) {
         component.value = "stu";
       } else {
         component.value = "tea";

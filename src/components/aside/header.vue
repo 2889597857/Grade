@@ -32,7 +32,6 @@ const router = useRouter();
 const out = () => {
   removeCookie();
   router.push("/login");
-  console.log(123);
 };
 </script>
 
