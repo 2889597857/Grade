@@ -2,13 +2,14 @@ import axios from 'axios';
 import { getCookie } from '@/lib/utils';
 class HttpRequest {
     constructor(baseUrl) {
-        this.baseUrl = baseUrl;
+        this.baseURL = baseUrl;
         this.queue = {}; //请求队列
     }
 
     getInsideConfig () {
         const config = {
-            baseUrl: this.baseUrl,
+            baseURL: this.baseURL,
+            timeout: 6000,
             headers: {}
         };
         return config;

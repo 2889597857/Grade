@@ -51,11 +51,6 @@ export default [
         name: "login",
         component: () => import('view/login.vue')
     },
-    // {
-    //     path: "/change",
-    //     name: "change",
-    //     component: () => import('com/safe/change.vue')
-    // },
 ]
 
 

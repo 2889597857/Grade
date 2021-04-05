@@ -1,4 +1,5 @@
 import { signin } from '@/api/signin';
+import { d } from '../../dist/assets/index.d782c3b2';
 
 export default {
     login ({ commit }, id) {
@@ -7,7 +8,7 @@ export default {
                 commit('get', { data: result.data, id })
                 resolve()
             }).catch((err) => {
-
+                console.log(err)
             });
         });
     }

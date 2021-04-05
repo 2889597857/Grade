@@ -7,6 +7,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+
     const Cookie = getCookie()
     if (!Cookie) {
         if (to.name === 'login') next()
