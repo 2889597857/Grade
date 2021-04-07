@@ -1,5 +1,5 @@
 import { signin } from '@/api/signin';
-
+import { history } from '@/api/history.js';
 
 export default {
     login ({ commit }, id) {
@@ -10,6 +10,13 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
+        });
+    },
+    history ({ commit }, id) {
+        history().then((result) => {
+            commit('getHistory', result.data)
+        }).catch((err) => {
+            console.log(err)
         });
     }
 }

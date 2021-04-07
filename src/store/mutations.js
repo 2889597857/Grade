@@ -5,5 +5,8 @@ export default {
     },
     get (state, id) {
         state.information = Object.assign({}, id.data, getInf(id.id))
+    },
+    getHistory (state, history) {
+        state.history = history
     }
 }
