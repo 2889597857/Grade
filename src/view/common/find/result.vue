@@ -20,14 +20,14 @@
         type="primary"
         size="small"
         @click="modify"
-        >{{ change }}</el-button
+        >{{ (change = changeVal ? "修改" : "保存") }}</el-button
       >
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, computed, defineProps, inject, toRefs } from "vue";
+  import { ref, defineProps, inject, toRefs } from "vue";
   import selects from "com/from/selects.vue";
   import { useStore } from "vuex";
   const store = useStore();
@@ -36,14 +36,9 @@
   const props = defineProps({
     result: Array,
   });
-
   let { result } = toRefs(props);
-
   let id = ref("");
   let show = ref([false, false, false, false, false, false, false]);
-
-  console.log();
-
   const modify = () => {
     if (changeVal.value) {
       show.value[0] = !show.value[0];
@@ -63,13 +58,8 @@
     }
   };
   const changeVal = ref(true);
-  const change = computed(() => {
-    if (changeVal.value) {
-      return "修改";
-    } else {
-      return "保存";
-    }
-  });
+  const change = ref('')
+
 </script>
 <style lang="scss" scoped>
   .modify-btn {

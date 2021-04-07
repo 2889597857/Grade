@@ -41,7 +41,7 @@ export default [
             {
                 path: "/resultInput",
                 name: "resultInput",
-                component: () => import('view/common/resultInput/resultInput.vue')
+                component: () => import('view/teacher/resultInput/resultInput.vue')
             },
         ]
     },

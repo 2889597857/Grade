@@ -7,7 +7,11 @@
         </el-form-item>
       </el-form>
       <div class="find-btn">
-        <el-button type="primary" :loading="loading" @click="submitForm()" size="small"
+        <el-button
+          type="primary"
+          :loading="loading"
+          @click="submitForm()"
+          size="small"
           >查询</el-button
         >
       </div>
@@ -17,39 +21,39 @@
         <div class="find-name">
           <p>姓名：{{ stuName }}</p>
         </div>
-        <stu :result="res" />
+        <findResult :result="res" />
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
-import { provide } from "vue";
-import stu from "./tea1.vue";
-import validator from "./validator.js";
-let {
-  validateId,
-  submitForm,
-  resetForm,
-  id,
-  result,
-  rules,
-  container,
-  stuName,
-  loading,
-  res,
-  findG,
-} = validator();
-provide("findG", findG);
+  import { provide } from "vue";
+  import findResult from "./result.vue";
+  import validator from "./validator.js";
+  let {
+    validateId,
+    submitForm,
+    resetForm,
+    id,
+    result,
+    rules,
+    container,
+    stuName,
+    loading,
+    res,
+    findG,
+  } = validator();
+  provide("findG", findG);
 </script>
 <style lang="scss" scoped>
-.find-menu {
-  width: 300px;
-  margin: 20px auto;
-}
+  .find-menu {
+    width: 300px;
+    margin: 20px auto;
+  }
 
-.find-name {
-  font-size: 14px;
-  margin-top: 20px;
-}
+  .find-name {
+    font-size: 14px;
+    margin-top: 20px;
+  }
 </style>

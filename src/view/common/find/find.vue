@@ -6,20 +6,16 @@
 
 <script>
   import myTemplate from "com/Template/Template.vue";
-  import stu from "./stu.vue";
-  import tea from "./tea.vue";
-  import { onMounted, inject, ref } from "vue";
+  import student from "./student.vue";
+  import teacher from "./teacher.vue";
+  import { onMounted, ref } from "vue";
+  import { showComponent } from '../common';
   export default {
-    components: { myTemplate, stu, tea },
+    components: { myTemplate, student, teacher },
     setup () {
-      let component = ref("tea");
-      const jurisdiction = inject("inf").jurisdiction;
+      let component = ref("teacher");
       onMounted(() => {
-        if (jurisdiction) {
-          component.value = "stu";
-        } else {
-          component.value = "tea";
-        }
+        component.value = showComponent()
       });
       return { component };
     },
