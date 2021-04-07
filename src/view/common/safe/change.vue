@@ -37,13 +37,13 @@
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
-      <goback />
+      <backhome />
     </div>
   </div>
 </template>
 
 <script>
-  import goback from './goback.vue'
+  import backhome from 'com/backhome/backhome.vue'
   export default {
     data () {
       var validatePass = (rule, value, callback) => {
@@ -93,7 +93,7 @@
         }
       };
     },
-    components: { goback },
+    components: { backhome },
     methods: {
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {

@@ -23,27 +23,27 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import myTemplate from "../Template/Template.vue";
-export default {
-  components: { myTemplate },
-  setup() {
-    const store = useStore();
-    const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人"];
-    const history = store.state.history;
+  import { useStore } from "vuex";
+  import myTemplate from "com/Template/Template.vue";
+  export default {
+    components: { myTemplate },
+    setup () {
+      const store = useStore();
+      const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人"];
+      const history = store.state.history;
 
-    return {
-      historyMenu,
-      history,
-    };
-  },
-};
+      return {
+        historyMenu,
+        history,
+      };
+    },
+  };
 </script>
 <style lang="scss" scoped>
-.fuor.history ul li:nth-child(4) {
-  width: 180px;
-  span {
-    color: #409eff;
+  .fuor.history ul li:nth-child(4) {
+    width: 180px;
+    span {
+      color: #409eff;
+    }
   }
-}
 </style>

@@ -11,15 +11,14 @@
 </template>
 
 <script>
-  import { defineComponent, ref } from 'vue'
-
-  export default defineComponent({
+  import { ref } from 'vue'
+  export default {
     setup () {
       return {
         input: ref('')
       }
     }
-  })
+  }
 </script>
 
 

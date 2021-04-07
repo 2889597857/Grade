@@ -95,7 +95,9 @@
       .dispatch("login", id)
       .then((result) => {
         setCookie(1);
-        router.push('/');
+        router.push({
+          name: 'index'
+        });
       })
       .catch((err) => { console.log(err) });
   }

@@ -25,56 +25,56 @@
     <div class="information-foot">
       <el-button @click="changeInf" type="primary">{{ btnName }}</el-button>
     </div>
-    <goback />
+    <backhome />
   </div>
 </template>
 
 <script>
-import { computed, ref, inject } from "vue";
-import goback from "./goback.vue";
+  import { computed, ref, inject } from "vue";
+  import backhome from 'com/backhome/backhome.vue'
 
-export default {
-  components: { goback },
-  setup() {
-    function changeInf() {
-      readonly.value = !readonly.value;
-    }
-    const inf = inject("inf");
-    let readonly = ref(true);
-    let btnName = computed(() => {
-      if (readonly.value) {
-        return "修改";
-      } else {
-        return "保存";
+  export default {
+    components: { backhome },
+    setup () {
+      function changeInf () {
+        readonly.value = !readonly.value;
       }
-    });
-    return {
-      acc: inf.id,
-      name: inf.name,
-      jurisdiction: inf.role,
-      email: inf.email,
-      phone: inf.phone,
+      const inf = inject("inf");
+      let readonly = ref(true);
+      let btnName = computed(() => {
+        if (readonly.value) {
+          return "修改";
+        } else {
+          return "保存";
+        }
+      });
+      return {
+        acc: inf.id,
+        name: inf.name,
+        jurisdiction: inf.role,
+        email: inf.email,
+        phone: inf.phone,
 
-      btnName,
-      changeInf,
-      readonly,
-    };
-  },
-};
+        btnName,
+        changeInf,
+        readonly,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.information {
-  margin: 0 auto;
-  width: 50%;
-  height: 450px;
-  padding: 10px 20px;
-  position: relative;
-  .information-header {
-    height: 60px;
-    line-height: 60px;
-    font-size: 18px;
-    font-weight: 700;
+  .information {
+    margin: 0 auto;
+    width: 50%;
+    height: 450px;
+    padding: 10px 20px;
+    position: relative;
+    .information-header {
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
-}
 </style>

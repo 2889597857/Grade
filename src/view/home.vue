@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-  import MyAside from "com/aside/aside.vue";
-  import MyMain from "com/main/main.vue";
-  import { provide, getCurrentInstance } from "vue";
+  import MyAside from "./common/aside/aside.vue";
+  import MyMain from "./common/main/main.vue";
+  import { provide } from "vue";
   import { useStore } from "vuex";
   const store = useStore();
   const inf = store.state.information;
