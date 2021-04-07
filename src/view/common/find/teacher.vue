@@ -21,7 +21,7 @@
         <div class="find-name">
           <p>姓名：{{ stuName }}</p>
         </div>
-        <findResult :result="res" />
+        <findResult :result="res" :name="stuName" :id="stuId" />
       </div>
     </transition>
   </div>
@@ -43,6 +43,7 @@
     loading,
     res,
     findG,
+    stuId
   } = validator();
   provide("findG", findG);
 </script>

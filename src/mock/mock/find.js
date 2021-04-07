@@ -1,32 +1,24 @@
 import Mock from 'mockjs'
 const Random = Mock.Random
 
-
-
-function c (params) {
+function c () {
     const a = Mock.mock({
-        '语文|60-100': 0,
-        '数学|60-100': 0,
-        '英语|60-100': 0,
-        '政治|60-100': 0,
-        '历史|60-100': 0,
-        '地理|60-100': 0,
-        '生物|60-100': 0,
+        'chinese|60-100': 0,
+        'math|60-100': 0,
+        'English|60-100': 0,
+        'politics|60-100': 0,
+        'history|60-100': 0,
+        'geography|60-100': 0,
+        'biology|60-100': 0,
     })
-    let b = []
-    for (let key in a) {
-        if (a.hasOwnProperty(key)) {
-            b.push(a[key])
-        }
-    }
-    return b
+
+    return a
 }
 
-export const find = (id) => {
-
-
+export const find = () => {
     return {
         name: Random.cname(),
+        id: parseInt(Math.random() * 1000000),
         grade: c()
     }
 }

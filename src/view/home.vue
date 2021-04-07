@@ -18,9 +18,7 @@
   import { useStore } from "vuex";
   const store = useStore();
   const inf = store.state.information;
-
   provide("inf", inf);
-
 </script>
 
 <style lang="scss" scoped>

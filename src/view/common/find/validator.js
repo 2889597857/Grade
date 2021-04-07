@@ -23,12 +23,12 @@ export default function validator (params) {
     const findGrides = (id) => {
         findApi(id).then((result) => {
             stuName.value = result.name
-            result.grade.push(result.grade.reduce((a, b) => a + b));
             res.value = result.grade
+            stuId.value = result.id
             container.value = true
             loading.value = false
         }).catch((err) => {
-
+            console.log(err)
         });
     }
     const findG = (id) => {
@@ -42,11 +42,11 @@ export default function validator (params) {
         id: [{ validator: validateId, trigger: "blur" }],
     };
     const container = ref(false);
-    const stuName = ref('张三')
     const loading = ref(false)
+    const stuName = ref('')
     const res = ref([])
-
+    const stuId = ref()
     return {
-        validateId, submitForm, id, result, rules, container, stuName, loading, res, findG
+        validateId, submitForm, id, result, rules, container, stuName, loading, res, findG, stuId
     }
 }

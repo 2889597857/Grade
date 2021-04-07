@@ -5,12 +5,12 @@
     </div>
     <div class="find-content">
       <ul class="history-title">
-        <li v-for="(item, index) in objs" :key="`obj${index}`">
+        <li v-for="(item, index) in objs" :key="`obj1${index}`">
           {{ item }}
         </li>
       </ul>
       <ul class="history-content">
-        <li v-for="(item, index) in result" :key="`obj${index}`">
+        <li v-for="(item, index) in result" :key="`obj2${index}`">
           {{ item }}
         </li>
       </ul>
@@ -28,21 +28,15 @@
   const findG = () => {
     findApi(1)
       .then((res) => {
-        let a = res.grade.reduce((a, b) => a + b);
-        res.grade.push(a);
         result.value = res.grade;
       })
-      .catch((err) => { });
+      .catch((err) => {
+        console.log(err)
+      });
   };
   const result = ref(null);
   onMounted(() => {
-    findApi(1)
-      .then((res) => {
-        let a = res.grade.reduce((a, b) => a + b);
-        res.grade.push(a);
-        result.value = res.grade;
-      })
-      .catch((err) => { });
+    findG()
   });
   provide("findG", findG);
 </script>

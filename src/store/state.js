@@ -1,16 +1,15 @@
 export default {
-
     information: {
 
     },
     history: [
         {
-            id: "18071",
+            id: "180711",
             name: "张三",
             object: "语文",
             history: { oldVal: 78, newVal: 80 },
             operator: "李四",
-            notes: "无",
+            time: "2021-04-01 09:14:06",
         },
         {
             id: "18034",
@@ -18,7 +17,7 @@ export default {
             object: "语文",
             history: { oldVal: 68, newVal: 70 },
             operator: "李四",
-            notes: "无",
+            time: "2021-04-03 12:14:06"
         },
         {
             id: "18076",
@@ -26,7 +25,7 @@ export default {
             object: "语文",
             history: { oldVal: 98, newVal: 80 },
             operator: "李四",
-            notes: "无",
+            time: "2021-04-02 19:22:06",
         },
         {
             id: "18021",
@@ -34,7 +33,7 @@ export default {
             object: "数学",
             history: { oldVal: 78, newVal: 80 },
             operator: "武康",
-            notes: "无",
+            time: "2021-04-01 11:12:16",
         },
         {
             id: "18071",
@@ -42,7 +41,7 @@ export default {
             object: "历史",
             history: { oldVal: 66, newVal: 78 },
             operator: "李四",
-            notes: "无",
+            time: "2021-04-03 08:33:06",
         },
     ]
 

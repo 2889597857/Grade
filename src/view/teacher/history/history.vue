@@ -16,6 +16,7 @@
             <span> {{ item.history.newVal }}分</span>
           </li>
           <li>{{ item.operator }}</li>
+          <li>{{ item.time }}</li>
         </ul>
       </div>
     </div>
@@ -29,9 +30,9 @@
     components: { myTemplate },
     setup () {
       const store = useStore();
-      const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人"];
+      const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人", '时间'];
       const history = store.state.history;
-
+      console.log(store.state)
       return {
         historyMenu,
         history,
@@ -45,5 +46,11 @@
     span {
       color: #409eff;
     }
+  }
+  .history ul li:last-child {
+    width: 150px;
+  }
+  .history-content ul li:last-child {
+    font-size: 14px;
   }
 </style>
