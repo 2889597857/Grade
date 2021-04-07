@@ -14,13 +14,11 @@
 <script setup>
   import MyAside from "./common/aside/aside.vue";
   import MyMain from "./common/main/main.vue";
-
   import { provide } from "vue";
   import { useStore } from "vuex";
   const store = useStore();
   const inf = store.state.information;
   provide("inf", inf);
-
 </script>
 
 <style lang="scss" scoped>

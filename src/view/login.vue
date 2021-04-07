@@ -93,7 +93,7 @@
   function sgin (id) {
     store
       .dispatch("login", id)
-      .then((result) => {
+      .then(() => {
         setCookie(1);
         router.push({
           name: 'index'

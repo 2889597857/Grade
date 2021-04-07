@@ -9,6 +9,7 @@ const obj = Mock.mock({
 
 
 export const login = (id) => {
+    console.log(id)
     return {
         jurisdiction: id.body,
         name: Random.cname(),
