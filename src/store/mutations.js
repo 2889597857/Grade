@@ -10,6 +10,6 @@ export default {
         state.history = history
     },
     setFindHistory (state, history) {
-        state.FindHistory.push(history)
+        state.FindHistory.unshift(history)
     }
 }

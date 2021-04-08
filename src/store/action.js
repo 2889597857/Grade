@@ -1,20 +1,21 @@
 import { signin } from '@/api/signin';
-import { history } from '@/api/history.js';
+import { getHistory } from '@/api/history.js';
+import { rate } from '@/api/rate.js';
 
 export default {
     login ({ commit }, id) {
         return new Promise((resolve, reject) => {
             signin(id).then((result) => {
-                commit('get', { data: result.data, id })
+                commit('get', { data: result, id })
                 resolve()
             }).catch((err) => {
                 console.log(err)
             });
         });
     },
-    history ({ commit }, id) {
-        history().then((result) => {
-            commit('getHistory', result.data)
+    history ({ commit }) {
+        getHistory().then((result) => {
+            commit('getHistory', result)
         }).catch((err) => {
             console.log(err)
         });

@@ -28,19 +28,24 @@
   import start from "./start.vue";
   import myTemplate from "com/Template/Template.vue";
   import { ref, provide } from "vue";
+  import { rate } from '@/api/rate.js';
+
   export default {
     components: { start, myTemplate },
     setup () {
-      let Rate = [
-        { name: "李新", obj: "英语", rate: 0, id: 0 },
-        { name: "王建国", obj: "语文", rate: 0, id: 1 },
-        { name: "王婷婷", obj: "数学", rate: 0, id: 2 },
-        { name: "张杰", obj: "地理", rate: 0, id: 3 },
-      ];
-      const RateTeacher = () => { };
+      let Rate = ref([]);
+      rate().then((result) => {
+        Rate.value = result
+      }).catch((err) => {
+        console.log(err)
+      });
+      const RateTeacher = (value) => {
+        console.log(value)
+      };
       let isRate = ref(true);
       let btnName = ref('')
       provide("isRate", isRate);
+      provide('RateTeacher', RateTeacher)
       return {
         Rate,
         RateTeacher,

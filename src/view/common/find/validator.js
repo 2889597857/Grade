@@ -2,12 +2,17 @@ import { reactive, ref } from "vue";
 import findApi from './findApi.js';
 export default function validator (params) {
     const validateId = (rule, value, callback) => {
-        if (value == "") {
-            callback(new Error("请输入学号"));
-        } else if (value.length < 1) {
-            callback(new Error("学号位数少于6位"));
+        const reg = /^\d{1,}$/
+        if (reg.test(value)) {
+            if (value == "") {
+                callback(new Error("请输入学号"));
+            } else if (value.length < 6) {
+                callback(new Error("学号位数少于6位"));
+            } else {
+                callback();
+            }
         } else {
-            callback();
+            callback(new Error("学号为六位纯数字"))
         }
     }
     const submitForm = () => {
@@ -19,7 +24,7 @@ export default function validator (params) {
                 return false;
             }
         });
-    };
+    }
     const findGrides = (id) => {
         findApi(id).then((result) => {
             stuName.value = result.name

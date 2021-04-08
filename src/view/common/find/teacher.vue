@@ -3,7 +3,12 @@
     <div class="find-menu">
       <el-form label-width="50px" :model="id" :rules="rules" ref="result">
         <el-form-item label="学号" prop="id">
-          <el-input v-model="id.id" clearable></el-input>
+          <el-input
+            v-model="id.id"
+            maxlength="6"
+            show-word-limit
+            clearable
+          ></el-input>
         </el-form-item>
       </el-form>
       <div class="find-btn">

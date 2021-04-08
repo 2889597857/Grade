@@ -94,7 +94,7 @@
     store
       .dispatch("login", id)
       .then(() => {
-        setCookie(1);
+        setCookie(id);
         router.push({
           name: 'index'
         });

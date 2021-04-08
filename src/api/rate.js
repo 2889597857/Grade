@@ -1,7 +1,7 @@
 import { axios } from './index';
-export const getHistory = (id) => {
+export const rate = (id) => {
     return axios.request({
-        url: '/api/history',
+        url: '/api/rate',
         method: 'get',
         data: id
     });

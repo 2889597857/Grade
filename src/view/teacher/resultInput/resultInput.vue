@@ -34,7 +34,7 @@
 
 <script setup>
   import { append } from '@/api/append.js';
-  import { inject, reactive, ref } from "vue";
+  import { computed, inject, reactive, ref } from "vue";
   import { ElMessage } from "element-plus";
   import { nowTime } from "@/lib/utils.js";
   import myTemplate from "com/Template/Template.vue";
@@ -52,35 +52,35 @@
       type: "success",
     });
   };
+  let a = true
+  const reg = /^\d{1,}$/
   function validate1 (rule, value, callback) {
-    const reg = /^\d{1,}$/
-    if (reg.test(value)) {
-      if (value == "") {
-        callback(new Error("请输入学号"));
-      } else if (value.length < 6) {
-        callback(new Error("学号位数少于6位"));
-      } else {
+    if (!reg.test(value)) {
+      callback(new Error("学号不能为空或学号格式错误"));
+    } else if (value.length < 6) {
+      callback(new Error("学号位数少于6位"));
+    } else {
+      if (a) {
         append(stu.id).then((result) => {
           stu.name = result.name
         }).catch((err) => {
           console.log(err)
         });
-        callback();
+        a = !a
       }
-    } else {
-      callback(new Error("学号为六位纯数字"))
+      callback();
     }
-
   }
   function validate2 (rule, value, callback) {
-    if (value == "") {
-      callback(new Error("请输入分数"));
+    if (!reg.test(value)) {
+      callback(new Error("分数不能为空或分数格式错误"));
     } else if (parseFloat(value) < 0 || parseFloat(value) > 100) {
       callback(new Error("数据不合法"));
     } else {
       callback();
     }
   }
+
   const stu = reactive({
     name: "",
     id: "",
@@ -105,6 +105,7 @@
         stu.id = "";
         stu.name = "";
         open1();
+        a = !a
       } else {
         return false;
       }
