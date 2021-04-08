@@ -1,4 +1,5 @@
 export default {
     information: {},
-    history: []
+    history: [],
+    FindHistory: []
 }

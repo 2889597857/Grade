@@ -16,36 +16,39 @@
           </li>
         </ul>
       </div>
-      <div class="his-tips" v-show="tipsShow"><p>暂无记录</p></div>
+      <div class="his-tips" v-show="isShow"><p>暂无记录</p></div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, inject } from "vue";
-const menu = ["姓名", "学号", "学科", "分数", "操作人", "时间"];
-const hisList = inject("his");
-let tipsShow = computed(() => {
-  if (hisList.value.length) {
-    return false;
-  } else {
-    return true;
-  }
-});
+  import { computed } from "vue";
+  import { useStore } from 'vuex';
+  const stroe = useStore()
+  const menu = ["姓名", "学号", "学科", "分数", "操作人", "时间"];
+  const hisList = stroe.state.FindHistory
+  const isShow = computed(() => {
+    if (hisList.length) return false
+    else return true
+  })
+
 </script>
 
 <style lang="scss" scoped>
-.his-title {
-  font-size: 20px;
-  font-weight: bolder;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #409eff;
-  padding-bottom: 20px;
-}
-.res-his ul li:last-child {
-  width: 150px;
-}
-.his-tips {
-  margin: 30px auto;
-}
+  .his-title {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #409eff;
+    padding-bottom: 20px;
+  }
+  .res-his ul li:last-child {
+    width: 150px;
+  }
+  .history-content ul li:last-child {
+    font-size: 14px;
+  }
+  .his-tips {
+    margin: 30px auto;
+  }
 </style>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getCookie } from '@/lib/utils';
 class HttpRequest {
     constructor(baseUrl) {
         this.baseURL = baseUrl;
@@ -42,8 +41,8 @@ class HttpRequest {
         instance.interceptors.response.use(
             res => {
                 this.distroy(url)
-                const { data, status } = res;
-                return { data, status };
+                const { data } = res;
+                return data;
             },
             error => {
                 this.distroy(url)

@@ -7,7 +7,12 @@
             <el-button type="text">{{ stu.name }}</el-button>
           </el-form-item>
           <el-form-item label="学号" prop="id">
-            <el-input v-model="stu.id" clearable></el-input>
+            <el-input
+              v-model="stu.id"
+              maxlength="6"
+              show-word-limit
+              clearable
+            ></el-input>
           </el-form-item>
           <el-form-item label="分数" clearable prop="grade">
             <el-input v-model="stu.grade"></el-input>
@@ -28,13 +33,19 @@
 </template>
 
 <script setup>
-  import { provide, inject, reactive, ref, watch } from "vue";
+  import { append } from '@/api/append.js';
+  import { inject, reactive, ref } from "vue";
   import { ElMessage } from "element-plus";
   import { nowTime } from "@/lib/utils.js";
   import myTemplate from "com/Template/Template.vue";
   import history from "./history.vue";
+  import { useStore } from 'vuex';
 
-  const teacher = inject("inf").name;
+  const inf = inject("inf");
+  const his = ref([]);
+  const result = ref(null);
+  const stroe = useStore()
+
   const open1 = () => {
     ElMessage.success({
       message: "录入成功",
@@ -42,13 +53,24 @@
     });
   };
   function validate1 (rule, value, callback) {
-    if (value == "") {
-      callback(new Error("请输入学号"));
-    } else if (value.length < 6) {
-      callback(new Error("学号位数少于6位"));
+    const reg = /^\d{1,}$/
+    if (reg.test(value)) {
+      if (value == "") {
+        callback(new Error("请输入学号"));
+      } else if (value.length < 6) {
+        callback(new Error("学号位数少于6位"));
+      } else {
+        append(stu.id).then((result) => {
+          stu.name = result.name
+        }).catch((err) => {
+          console.log(err)
+        });
+        callback();
+      }
     } else {
-      callback();
+      callback(new Error("学号为六位纯数字"))
     }
+
   }
   function validate2 (rule, value, callback) {
     if (value == "") {
@@ -64,27 +86,21 @@
     id: "",
     grade: "",
   });
-
   const rules = {
     id: [{ validator: validate1, trigger: "blur" }],
     grade: [{ validator: validate2, trigger: "blur" }],
   };
-
-  const his = ref([]);
-  provide("his", his);
-  const result = ref(null);
   const submitForm = () => {
-    console.log(123);
     result.value.validate((valid) => {
       if (valid) {
-        his.value.push({
+        stroe.commit('setFindHistory', {
           name: stu.name,
           id: stu.id,
+          obj: inf.role.substr(0, 2),
           grade: stu.grade,
-          obj: "语文",
-          teacher,
+          teacher: inf.name,
           time: nowTime(),
-        });
+        })
         stu.grade = "";
         stu.id = "";
         stu.name = "";
@@ -95,13 +111,10 @@
     });
   };
   const resetForm = () => {
+    stu.name = ''
     result.value.resetFields();
   };
-  watch(stu, () => {
-    if (stu.id.length >= 5) {
-      stu.name = "张三";
-    }
-  });
+
 </script>
 <style lang="scss" scoped>
   .result {

@@ -8,5 +8,8 @@ export default {
     },
     getHistory (state, history) {
         state.history = history
+    },
+    setFindHistory (state, history) {
+        state.FindHistory.push(history)
     }
 }

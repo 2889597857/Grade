@@ -50,8 +50,6 @@
   let changeVal = ref(true);
   let change = ref('修改')
 
-  console.log()
-
   const modify = () => {
     let span = document.querySelector(`[data-obj="${obj}"] span`)
     let a = document.querySelector(`[data-obj="${obj}"] div`)
