@@ -34,7 +34,6 @@
       const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人", '时间'];
       store.dispatch('history', 0)
       let history = store.state.history;
-      console.log(store.state.history)
       return {
         historyMenu,
         history,
