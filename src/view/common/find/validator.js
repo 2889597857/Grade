@@ -25,6 +25,9 @@ export default function validator (params) {
             }
         });
     }
+    const rules = {
+        id: [{ validator: validateId, trigger: "blur" }],
+    };
     const findGrides = (id) => {
         findApi(id).then((result) => {
             stuName.value = result.name
@@ -43,9 +46,7 @@ export default function validator (params) {
         id: "",
     });
     const result = ref(null);
-    const rules = {
-        id: [{ validator: validateId, trigger: "blur" }],
-    };
+
     const container = ref(false);
     const loading = ref(false)
     const stuName = ref('')
