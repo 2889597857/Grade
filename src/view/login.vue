@@ -46,6 +46,8 @@
   import { useRouter } from "vue-router";
   import { setCookie } from "@/lib/utils.js";
 
+
+
   function validatePass (rule, value, callback) {
     if (value === "") {
       callback(new Error("请输入账号"));

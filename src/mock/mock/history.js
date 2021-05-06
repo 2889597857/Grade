@@ -1,9 +1,6 @@
 import Mock from 'mockjs'
 const Random = Mock.Random
 
-const a2 = ['语文', '数学', '英语', '政治', '历史', '地理', '生物']
-
-
 export const history = () => {
     let a = []
     for (let index = 0; index < 5; index++) {

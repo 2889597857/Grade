@@ -7,7 +7,6 @@ const obj = Mock.mock({
     'id|0-6': 0
 })
 
-
 export const login = (id) => {
     return {
         jurisdiction: id.body,
