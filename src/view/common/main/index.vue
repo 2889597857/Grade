@@ -1,7 +1,11 @@
 <template>
   <div class="index">
+    <img src="@/assets/logo-blue.svg" alt="login" title="校徽" />
     <div class="title">学生成绩管理系统</div>
-
+    <div class="describe">
+      <p>18物联网应用技术</p>
+      <p>毕业设计</p>
+    </div>
     <div class="error">
       <p>* 本系统所有数据均由算法随机生成</p>
       <p>* 如有雷同纯属巧合</p>
