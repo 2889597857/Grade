@@ -4,7 +4,7 @@ export default {
         state.history.push(id)
     },
     get (state, id) {
-        state.information = Object.assign({}, id.data, getInf(id.id))
+        state.information = Object.assign({}, id, getInf(id.role))
     },
     getHistory (state, history) {
         state.history = history

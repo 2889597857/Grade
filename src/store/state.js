@@ -1,5 +1,6 @@
 export default {
     information: {},
     history: [],
-    FindHistory: []
+    FindHistory: [],
+    loading: true
 }

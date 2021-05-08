@@ -16,9 +16,6 @@
     >
   </div>
 </template>
-
-<script>
-</script>
 <style lang="scss" scoped>
   .index {
     margin-top: 100px;

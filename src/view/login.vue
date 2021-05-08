@@ -2,12 +2,12 @@
   <div id="login">
     <div class="login www">
       <div class="login-content">
-        <div class="title">登录</div>
+        <div class="title">登 录</div>
         <el-form
           :model="ruleForm"
           :rules="rules"
           ref="login"
-          label-width="45px"
+          label-width="60px"
         >
           <el-form-item label="账号:" prop="pass">
             <el-input
@@ -32,8 +32,8 @@
           </el-form-item>
         </el-form>
         <div class="tips">
-          <p>*老师账号：0 密码：0</p>
-          <p>*学生账号：1 密码：1</p>
+          <p>*老师账号：12345 - 12351 密码：123456</p>
+          <p>*学生账号：180101 - 180150 密码：123456</p>
         </div>
       </div>
     </div>
@@ -42,66 +42,43 @@
 
 <script setup>
   import { reactive, ref } from "vue";
-  import { useStore } from "vuex";
   import { useRouter } from "vue-router";
   import { setCookie } from "@/lib/utils.js";
+  import { signin } from '@/api/signin.js';
 
-
-
-  function validatePass (rule, value, callback) {
-    if (value === "") {
-      callback(new Error("请输入账号"));
-    } else {
-      callback();
-    }
-  }
-  function validatePass2 (rule, value, callback) {
-    if (value === "") {
-      callback(new Error("请输入密码"));
-    } else {
-      callback();
-    }
-  }
   let ruleForm = reactive({
     pass: "",
     checkPass: "",
   });
 
   let rules = {
-    pass: [{ validator: validatePass, trigger: "blur" }],
-    checkPass: [{ validator: validatePass2, trigger: "blur" }],
+    pass: [{ required: true, message: '请输入账号', trigger: "blur" },],
+    checkPass: [{ required: true, message: '请输入密码', trigger: "blur" }],
   };
 
   const login = ref(null);
-  const store = useStore();
   const router = useRouter();
 
-  function submitForm (formName) {
+  function submitForm () {
     login.value.validate((valid) => {
       if (valid) {
-        const a = parseFloat(ruleForm.pass);
-        if (a == 1) {
-          sgin(1);
-        } else if (a == 0) {
-          sgin(0);
-        } else {
-          alert("账号或密码错误");
-        }
+        signin({
+          act: ruleForm.pass.trim(),
+          psd: ruleForm.checkPass.trim()
+        }).then((result) => {
+          if (result.status == 200) {
+            setCookie(result.token);
+            // setCookie(result.role)
+            router.push({ name: 'index' });
+          }
+        }).catch(() => {
+          ruleForm.checkPass = ''
+          alert('账号或密码错误')
+        });
       } else {
         return false;
       }
     });
-  }
-  function sgin (id) {
-    store
-      .dispatch("login", id)
-      .then(() => {
-        setCookie(id);
-        router.push({
-          name: 'index'
-        });
-      })
-      .catch((err) => { console.log(err) });
   }
   function resetForm (formName) {
     login.value.resetFields();
@@ -118,8 +95,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px;
-      height: 350px;
+      width: 450px;
+      height: 400px;
       padding: 50px 0;
       .login-content {
         width: 100%;
@@ -128,6 +105,13 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        .el-form {
+          width: 80%;
+        }
+        .title {
+          font-size: 30px;
+          font-weight: bolder;
+        }
       }
     }
   }
