@@ -1,11 +1,11 @@
 <template>
   <div class="history">
     <div class="find-btn">
-      <selects />
+      <selects :examination="examination" @change="change" />
     </div>
     <div class="find-content">
       <ul class="history-title">
-        <li v-for="(item, index) in objs" :key="`obj1${index}`">
+        <li v-for="(item, index) in objects" :key="`obj1${index}`">
           {{ item }}
         </li>
       </ul>
@@ -19,14 +19,17 @@
 </template>
 
 <script setup>
-  import { onMounted, provide, ref } from "vue";
+  import { onMounted, ref } from "vue";
   import findApi from "./findApi.js";
+  import examination from '@/config/examination.js';
+  import objects from '@/config/object.js';
   import selects from "com/from/selects.vue";
 
-  const objs = ["语文", "数学", "英语", "政治", "历史", "地理", "生物", "总分"];
-
-  const findG = () => {
-    findApi(1)
+  function change (value) {
+    findG(value)
+  }
+  const findG = (value) => {
+    findApi(value)
       .then((res) => {
         result.value = res.grade;
       })
@@ -38,5 +41,4 @@
   onMounted(() => {
     findG()
   });
-  provide("findG", findG);
 </script>

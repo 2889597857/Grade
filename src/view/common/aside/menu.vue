@@ -13,7 +13,7 @@
             <i class="el-icon-s-tools"></i>
             <span>系统管理</span>
           </template>
-          <item />
+          <item :route="state.information.Route" />
         </el-submenu>
       </el-menu>
     </el-col>
@@ -21,5 +21,7 @@
 </template>
 
 <script setup>
-import item from "./item.vue";
+  import { useStore } from 'vuex';
+  import item from "./item.vue";
+  const state = useStore().state
 </script>

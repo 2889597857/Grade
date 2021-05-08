@@ -14,7 +14,8 @@
   export default {
     props: {
       id: Number,
-      rate: Number
+      rate: Number,
+      index: Number
     },
     setup (props) {
       const isRate = inject("isRate");
@@ -24,7 +25,7 @@
       function change (params) {
         if (params != props.rate) {
           RateTeacher({
-            rate: params, id: props.id
+            rate: params, id: props.id, index: props.index
           })
         }
       }

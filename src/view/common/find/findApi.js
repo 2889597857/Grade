@@ -12,7 +12,7 @@ export default function (id) {
                 resolve({ name, id, grade })
             }
         }).catch((err) => {
-            console.log(err)
+            reject(err)
         });
     });
 }

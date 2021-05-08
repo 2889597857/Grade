@@ -1,15 +1,17 @@
-import { signin } from '@/api/signin';
+import { getInf } from '@/api/signin';
 import { getHistory } from '@/api/history.js';
 import { rate } from '@/api/rate.js';
+import { getCookie } from '@/lib/utils'
 
 export default {
-    login ({ commit }, id) {
+    getInformation ({ commit, state }) {
         return new Promise((resolve, reject) => {
-            signin(id).then((result) => {
-                commit('get', { data: result, id })
+            const token = getCookie()
+            getInf({ token }).then((result) => {
+                commit('get', result)
                 resolve()
             }).catch((err) => {
-                console.log(err)
+                reject(err)
             });
         });
     },

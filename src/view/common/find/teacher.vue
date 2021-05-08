@@ -47,10 +47,10 @@
     stuName,
     loading,
     res,
-    findG,
+    findGrides,
     stuId
   } = validator();
-  provide("findG", findG);
+  provide("findGrides", findGrides);
 </script>
 <style lang="scss" scoped>
   .find-menu {

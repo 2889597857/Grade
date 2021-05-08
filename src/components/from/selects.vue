@@ -1,10 +1,15 @@
 <template>
   <div class="select">
     <div style="width: 130px">
-      <el-select v-model="obj" size="small" placeholder="请选择日期">
+      <el-select
+        v-model="obj"
+        size="small"
+        placeholder="请选择日期"
+        @change="change"
+      >
         <el-option
-          v-for="item in objs"
-          :key="item.value"
+          v-for="item in examination"
+          :key="item.label"
           :label="item.label"
           :value="item.value"
         >
@@ -15,26 +20,22 @@
 </template>
 
 <script>
-  import { ref, toRefs, reactive, watch, inject, onMounted } from "vue";
+  import { ref, watch, inject, } from "vue";
   export default {
-    setup () {
-      const state = reactive({
-        objs: [
-          { value: 0, label: "第一次考试" },
-          { value: 1, label: "第二次考试" },
-          { value: 2, label: "第三次考试" },
-          { value: 3, label: "第四次考试" },
-        ],
-      });
-      let obj = ref("第四次考试");
-      const findG = inject("findG");
-      watch(obj, (value) => {
-        findG(value);
-      });
+    props: {
+      examination: {
+        type: Array,
+        required: true
+      }
+    },
+    setup (prop, { emit }) {
+      let obj = ref('fourth');
+      const change = value => {
+        emit('change', value)
+      }
       return {
-        ...toRefs(state),
-        obj,
-      };
+        obj, change
+      }
     },
   };
 </script>

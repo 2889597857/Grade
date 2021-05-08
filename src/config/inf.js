@@ -1,5 +1,6 @@
 function getInf (params) {
-    if (params) {
+
+    if (params == '学生') {
         return {
             Route: [{
                 name: "教师评分",
