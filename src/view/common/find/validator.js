@@ -39,9 +39,6 @@ export default function validator (params) {
             console.log(err)
         });
     }
-    const findG = (id) => {
-        findGrides(id)
-    }
     const id = reactive({
         id: "",
     });
@@ -53,6 +50,6 @@ export default function validator (params) {
     const res = ref([])
     const stuId = ref()
     return {
-        validateId, submitForm, id, result, rules, container, stuName, loading, res, findG, stuId
+        validateId, submitForm, id, result, rules, container, stuName, loading, res, findGrides, stuId
     }
 }

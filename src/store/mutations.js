@@ -7,7 +7,7 @@ export default {
         state.information = Object.assign({}, id, getInf(id.role))
     },
     getHistory (state, history) {
-        state.history = history
+        Object.assign({}, state.history, history)
     },
     setFindHistory (state, history) {
         state.FindHistory.unshift(history)

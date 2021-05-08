@@ -34,17 +34,17 @@
 
 <script setup>
   import { append } from '@/api/append.js';
-  import { computed, inject, reactive, ref } from "vue";
+  import { reactive, ref } from "vue";
   import { ElMessage } from "element-plus";
   import { nowTime } from "@/lib/utils.js";
   import myTemplate from "com/Template/Template.vue";
   import history from "./history.vue";
   import { useStore } from 'vuex';
 
-  const inf = inject("inf");
   const his = ref([]);
   const result = ref(null);
   const stroe = useStore()
+  const inf = stroe.state.information
 
   const open1 = () => {
     ElMessage.success({

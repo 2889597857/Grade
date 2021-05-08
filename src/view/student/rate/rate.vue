@@ -13,12 +13,12 @@
           <li>{{ item.name }}</li>
           <li>{{ item.obj }}</li>
           <li>
-            <start :rate="item.rate" :id="item.id" />
+            <start :index="index" :rate="item.rate" :id="item.id" />
           </li>
         </ul>
       </div>
     </div>
-    <el-button @click="isRate = !isRate" type="primary">{{
+    <el-button @click="save" type="primary">{{
       (btnName = isRate ? "评分" : "保存")
     }}</el-button>
   </myTemplate>
@@ -27,30 +27,38 @@
 <script>
   import start from "./start.vue";
   import myTemplate from "com/Template/Template.vue";
-  import { ref, provide } from "vue";
+  import { ref, provide, onMounted } from "vue";
   import { rate } from '@/api/rate.js';
 
   export default {
     components: { start, myTemplate },
     setup () {
       let Rate = ref([]);
-      rate().then((result) => {
-        Rate.value = result
-      }).catch((err) => {
-        console.log(err)
-      });
+      onMounted(() => {
+        rate().then((result) => {
+          Rate.value = result
+        }).catch((err) => {
+          console.log(err)
+        });
+      })
+      const score = []
       const RateTeacher = (value) => {
-        console.log(value)
+        const { index, rate, id } = value
+        score[index] = { rate, id }
       };
       let isRate = ref(true);
       let btnName = ref('')
+      const save = () => {
+        isRate.value = !isRate.value
+        console.log(score)
+      }
       provide("isRate", isRate);
       provide('RateTeacher', RateTeacher)
       return {
         Rate,
         RateTeacher,
         btnName,
-        isRate,
+        isRate, save
       };
     },
   };

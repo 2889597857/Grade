@@ -9,6 +9,8 @@
   import myTemplate from "com/Template/Template.vue";
   import eLine from "com/echarts/line.vue";
   import eRadar from "com/echarts/radar.vue";
+  import chart from "com/echarts/chart.vue";
+
 
   import { provide } from "vue";
   export default {

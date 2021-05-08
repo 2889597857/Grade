@@ -1,11 +1,11 @@
 <template>
   <div class="history">
     <div class="find-btn">
-      <selects />
+      <selects :examination="examination" @change="exam" />
     </div>
     <div class="find-content">
       <ul class="history-title">
-        <li v-for="(item, index) in objs" :key="`obj${index}`">
+        <li v-for="(item, index) in objects" :key="`obj${index}`">
           {{ item }}
         </li>
       </ul>
@@ -26,30 +26,56 @@
         @click="modify"
         >{{ change }}</el-button
       >
+      <el-button
+        class="modify-btn"
+        type="primary"
+        plain
+        size="small"
+        @click="cancel"
+      >
+        取消</el-button
+      >
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, defineProps, inject, toRefs } from "vue";
+  import { ref, defineProps, toRefs, inject, } from "vue";
+  import examination from '@/config/examination.js';
+  import objects from '@/config/object.js';
   import { nowTime } from "@/lib/utils.js";
   import selects from "com/from/selects.vue";
   import { useStore } from "vuex";
+
   const store = useStore();
-  const inf = inject("inf");
-  const obj = inf.object
-  const objs = ["语文", "数学", "英语", "政治", "历史", "地理", "生物", "总分"];
+  const inf = store.state.information
+  const obj = inf.course
+
   const props = defineProps({
     result: Object,
     name: String,
     id: Number
   });
+
   let { result, name, id } = toRefs(props);
+  const findGrides = inject('findGrides')
+
+  const exam = (value) => {
+    cancel()
+    findGrides({ value, id })
+  }
 
   let ids = ref("");
   let changeVal = ref(true);
   let change = ref('修改')
-
+  const cancel = () => {
+    let span = document.querySelector(`[data-obj="${obj}"] span`)
+    let a = document.querySelector(`[data-obj="${obj}"] div`)
+    changeVal = !changeVal
+    a.classList.add('a')
+    span.style.display = 'block'
+    change.value = '修改'
+  }
   const modify = () => {
     let span = document.querySelector(`[data-obj="${obj}"] span`)
     let a = document.querySelector(`[data-obj="${obj}"] div`)
@@ -59,20 +85,23 @@
       change.value = '保存'
       ids.value = result.value[obj]
       changeVal = !changeVal
-    } else {
+    }
+    else {
       if (ids.value > 100 || ids.value < 0) {
         alert('数据不合法')
       } else {
-        store.commit('addHis', {
-          id: id,
-          name: name,
-          object: inf.role.substr(0, 2),
-          history: { oldVal: result.value[obj], newVal: ids.value },
-          operator: inf.name,
-          time: nowTime()
-        })
-        result.value[obj] = ids.value
-        ids.value = null
+        if (result.value[obj] !== ids.value) {
+          store.commit('addHis', {
+            id: id.value,
+            name: name.value,
+            object: inf.role.substr(0, 2),
+            history: { oldVal: result.value[obj], newVal: ids.value },
+            operator: inf.name,
+            time: nowTime()
+          })
+          result.value[obj] = ids.value
+          ids.value = null
+        }
       }
       changeVal = !changeVal
       a.classList.add('a')
@@ -81,11 +110,15 @@
     }
   };
 
+  // watch(() => result.value, () => {
+  //   changeVal.value = false
+  //   modify()
+  // })
 
 </script>
 <style lang="scss" scoped>
   .modify-btn {
-    margin: 20px auto;
+    margin: 20px 10px;
   }
   .a {
     display: none;

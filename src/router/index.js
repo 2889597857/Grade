@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import routes from './routes';
+import NProgress from "@/lib/nprogress.js";
 import { getCookie } from '@/lib/utils';
 
 const router = createRouter({
@@ -7,7 +8,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-
+    NProgress.start();
     const Cookie = getCookie()
     if (!Cookie) {
         if (to.name === 'login') next()
@@ -17,5 +18,7 @@ router.beforeEach((to, from, next) => {
         else next()
     }
 })
-
+router.afterEach(() => {
+    NProgress.done();
+});
 export default router
