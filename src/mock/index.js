@@ -7,7 +7,7 @@ import { rate } from './mock/rate.js';
 
 // 拦截登录请求
 // Mock.mock('/api/login', 'get', login)
-Mock.mock('/api/find', 'get', find)
+// Mock.mock('/api/find', 'get', find)
 Mock.mock('/api/history', 'get', history)
 Mock.mock('/api/append', 'get', append)
 // 拦截评分请求

@@ -26,7 +26,7 @@
         <div class="find-name">
           <p>姓名：{{ stuName }}</p>
         </div>
-        <findResult :result="res" :name="stuName" :id="stuId" />
+        <findResult :result="res" :name="stuName" />
       </div>
     </transition>
   </div>

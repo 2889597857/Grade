@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from '@/lib/utils';
 class HttpRequest {
     constructor(baseUrl) {
         this.baseURL = baseUrl;
@@ -8,7 +9,7 @@ class HttpRequest {
     getInsideConfig () {
         const config = {
             baseURL: this.baseURL,
-            timeout: 6000,
+            timeout: 5000,
             headers: {}
         };
         return config;
@@ -30,7 +31,7 @@ class HttpRequest {
                 }
                 this.queue[url] = true;
                 //将token封装到请求头中
-                // config.headers['Authorization'] = getCookie();
+                config.headers['Authorization'] = getCookie();
                 return config;
             },
             error => {

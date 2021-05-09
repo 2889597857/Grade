@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div class="find-btn">
-      <selects :examination="examination" @change="change" />
+      <selects :examination="examination" :exam="exam" @change="change" />
     </div>
     <div class="find-content">
       <ul class="history-title">
@@ -20,6 +20,7 @@
 
 <script setup>
   import { onMounted, ref } from "vue";
+  import { useStore } from 'vuex';
   import findApi from "./findApi.js";
   import examination from '@/config/examination.js';
   import objects from '@/config/object.js';
@@ -28,8 +29,11 @@
   function change (value) {
     findG(value)
   }
+  const exam = ref('third')
+  const state = useStore().state
+  const ID = state.information.ID
   const findG = (value) => {
-    findApi(value)
+    findApi({ value, id: ID })
       .then((res) => {
         result.value = res.grade;
       })
@@ -39,6 +43,6 @@
   };
   const result = ref(null);
   onMounted(() => {
-    findG()
+    findG(exam.value)
   });
 </script>

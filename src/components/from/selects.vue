@@ -20,16 +20,21 @@
 </template>
 
 <script>
-  import { ref, watch, inject, } from "vue";
+  import { ref } from "vue";
   export default {
     props: {
       examination: {
         type: Array,
         required: true
+      },
+      exam: {
+        type: String,
+        required: true
       }
     },
-    setup (prop, { emit }) {
-      let obj = ref('fourth');
+    setup (props, { emit }) {
+      let obj = ref();
+      obj.value = props.exam
       const change = value => {
         emit('change', value)
       }

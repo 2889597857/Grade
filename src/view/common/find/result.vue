@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div class="find-btn">
-      <selects :examination="examination" @change="exam" />
+      <selects :examination="examination" :exam="exam" @change="storeExam" />
     </div>
     <div class="find-content">
       <ul class="history-title">
@@ -50,24 +50,26 @@
   const store = useStore();
   const inf = store.state.information
   const obj = inf.course
-
+  const exam = store.state.exam
   const props = defineProps({
     result: Object,
     name: String,
-    id: Number
   });
 
-  let { result, name, id } = toRefs(props);
+  let { result, name } = toRefs(props);
   const findGrides = inject('findGrides')
 
-  const exam = (value) => {
+  const storeExam = (value) => {
     cancel()
-    findGrides({ value, id })
+    store.commit("changeExam", value)
+    findGrides()
   }
 
   let ids = ref("");
+
   let changeVal = ref(true);
   let change = ref('修改')
+
   const cancel = () => {
     let span = document.querySelector(`[data-obj="${obj}"] span`)
     let a = document.querySelector(`[data-obj="${obj}"] div`)
@@ -109,12 +111,6 @@
       change.value = '修改'
     }
   };
-
-  // watch(() => result.value, () => {
-  //   changeVal.value = false
-  //   modify()
-  // })
-
 </script>
 <style lang="scss" scoped>
   .modify-btn {

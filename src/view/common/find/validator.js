@@ -1,6 +1,8 @@
 import { reactive, ref } from "vue";
+import { useStore } from 'vuex';
 import findApi from './findApi.js';
-export default function validator (params) {
+export default function validator () {
+    const store = useStore()
     const validateId = (rule, value, callback) => {
         const reg = /^\d{1,}$/
         if (reg.test(value)) {
@@ -19,7 +21,8 @@ export default function validator (params) {
         result.value.validate((valid) => {
             if (valid) {
                 loading.value = true
-                findGrides(id.id)
+                store.commit('getFindGradeID', id.id)
+                findGrides()
             } else {
                 return false;
             }
@@ -28,28 +31,39 @@ export default function validator (params) {
     const rules = {
         id: [{ validator: validateId, trigger: "blur" }],
     };
-    const findGrides = (id) => {
-        findApi(id).then((result) => {
+
+    /**
+     *  成绩查询api
+     */
+
+    const findGrides = () => {
+        findApi({ value: store.state.exam, id: id.id }).then((result) => {
             stuName.value = result.name
             res.value = result.grade
-            stuId.value = result.id
             container.value = true
             loading.value = false
         }).catch((err) => {
-            console.log(err)
+            loading.value = false
+            alert(err)
         });
     }
-    const id = reactive({
-        id: "",
-    });
+    // 表单验证vnode实例
     const result = ref(null);
-
+    // 控制查询结果显示
     const container = ref(false);
+    // 按钮加载
     const loading = ref(false)
+    // 学生姓名
     const stuName = ref('')
+    // 学生 ID
+    const id = reactive({
+        id: ""
+    })
+    // 学生成绩
     const res = ref([])
-    const stuId = ref()
+
+
     return {
-        validateId, submitForm, id, result, rules, container, stuName, loading, res, findGrides, stuId
+        validateId, submitForm, result, rules, container, stuName, loading, res, findGrides, id
     }
 }

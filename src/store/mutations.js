@@ -11,5 +11,11 @@ export default {
     },
     setFindHistory (state, history) {
         state.FindHistory.unshift(history)
+    },
+    changeExam (state, value) {
+        state.exam = value
+    },
+    getFindGradeID (state, value) {
+        state.findGradeID.unshift(value)
     }
 }
