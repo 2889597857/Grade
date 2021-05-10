@@ -21,7 +21,6 @@ export default function validator () {
         result.value.validate((valid) => {
             if (valid) {
                 loading.value = true
-                store.commit('getFindGradeID', id.id)
                 findGrides()
             } else {
                 return false;
@@ -40,10 +39,12 @@ export default function validator () {
         findApi({ value: store.state.exam, id: id.id }).then((result) => {
             stuName.value = result.name
             res.value = result.grade
-            container.value = true
+            store.commit('getFindGradeID', result.id)
             loading.value = false
+            container.value = true
         }).catch((err) => {
             loading.value = false
+            id.id = ''
             alert(err)
         });
     }

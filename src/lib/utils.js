@@ -14,7 +14,7 @@ function nowTime () {
     return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }
 function isTen (params) {
-    return params > 10 ? params : '0' + params
+    return params >= 10 ? params : '0' + params
 }
 
 

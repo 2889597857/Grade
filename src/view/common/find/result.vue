@@ -18,6 +18,7 @@
           <span>{{ value }}</span>
           <el-input class="a" v-model="ids"></el-input>
         </li>
+        <li>{{ score }}</li>
       </ul>
       <el-button
         class="modify-btn"
@@ -40,12 +41,15 @@
 </template>
 
 <script setup>
-  import { ref, defineProps, toRefs, inject, } from "vue";
+  import { ref, defineProps, defineEmit, toRefs, inject, computed, } from "vue";
+  import { useStore } from "vuex";
+  import { amend } from '@/api/history';
   import examination from '@/config/examination.js';
   import objects from '@/config/object.js';
   import { nowTime } from "@/lib/utils.js";
   import selects from "com/from/selects.vue";
-  import { useStore } from "vuex";
+
+  const emit = defineEmit()
 
   const store = useStore();
   const inf = store.state.information
@@ -54,9 +58,15 @@
   const props = defineProps({
     result: Object,
     name: String,
+    stuId: String
   });
 
-  let { result, name } = toRefs(props);
+  let { result, name, stuId } = toRefs(props);
+
+  const score = computed(() => {
+    return Object.values(result.value).reduce((a, b) => a + b, 0)
+  })
+
   const findGrides = inject('findGrides')
 
   const storeExam = (value) => {
@@ -73,11 +83,14 @@
   const cancel = () => {
     let span = document.querySelector(`[data-obj="${obj}"] span`)
     let a = document.querySelector(`[data-obj="${obj}"] div`)
-    changeVal = !changeVal
-    a.classList.add('a')
-    span.style.display = 'block'
-    change.value = '修改'
+    if (span && a) {
+      changeVal = true
+      a.classList.add('a')
+      span.style.display = 'block'
+      change.value = '修改'
+    }
   }
+
   const modify = () => {
     let span = document.querySelector(`[data-obj="${obj}"] span`)
     let a = document.querySelector(`[data-obj="${obj}"] div`)
@@ -86,29 +99,40 @@
       span.style.display = 'none'
       change.value = '保存'
       ids.value = result.value[obj]
-      changeVal = !changeVal
+      changeVal = false
     }
     else {
-      if (ids.value > 100 || ids.value < 0) {
+      if (parseFloat(ids.value) > 100 || parseFloat(ids.value) < 0) {
         alert('数据不合法')
       } else {
         if (result.value[obj] !== ids.value) {
-          store.commit('addHis', {
-            id: id.value,
-            name: name.value,
-            object: inf.role.substr(0, 2),
-            history: { oldVal: result.value[obj], newVal: ids.value },
-            operator: inf.name,
-            time: nowTime()
+          amend({
+            data: {
+              id: stuId.value,
+              name: name.value,
+              object: inf.role.substr(0, 2),
+              history: { oldValue: result.value[obj], newValue: ids.value },
+              operator: inf.name,
+              time: nowTime()
+            }, examing: {
+              exam: store.state.exam,
+              course: inf.course,
+              grade: ids.value
+            }
           })
-          result.value[obj] = ids.value
-          ids.value = null
+            .then((res) => {
+              emit('changeRes', res)
+              ids.value = null
+              changeVal = true
+              a.classList.add('a')
+              span.style.display = 'block'
+              change.value = '修改'
+            })
+            .catch((err) => {
+              console.log(err)
+            });
         }
       }
-      changeVal = !changeVal
-      a.classList.add('a')
-      span.style.display = 'block'
-      change.value = '修改'
     }
   };
 </script>

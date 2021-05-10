@@ -1,5 +1,6 @@
 <template>
   <div class="teacher">
+    <p>180101</p>
     <div class="find-menu">
       <el-form label-width="50px" :model="id" :rules="rules" ref="result">
         <el-form-item label="学号" prop="id">
@@ -26,7 +27,12 @@
         <div class="find-name">
           <p>姓名：{{ stuName }}</p>
         </div>
-        <findResult :result="res" :name="stuName" />
+        <findResult
+          :result="res"
+          :name="stuName"
+          @changeRes="changeRes"
+          :stuId="id.id"
+        />
       </div>
     </transition>
   </div>
@@ -48,8 +54,10 @@
     loading,
     res,
     findGrides,
-    stuId
   } = validator();
+  const changeRes = (value) => {
+    res.value = value
+  }
   provide("findGrides", findGrides);
 </script>
 <style lang="scss" scoped>

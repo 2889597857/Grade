@@ -4,7 +4,7 @@ import { rate } from '@/api/rate.js';
 import { getCookie } from '@/lib/utils'
 
 export default {
-    getInformation ({ commit, state }) {
+    getInformation ({ commit }) {
         return new Promise((resolve, reject) => {
             const token = getCookie()
             getInf({ token }).then((result) => {
@@ -15,11 +15,14 @@ export default {
             });
         });
     },
-    history ({ commit }) {
-        getHistory().then((result) => {
-            commit('getHistory', result)
-        }).catch((err) => {
-            console.log(err)
+    history ({ commit, state }, id) {
+        return new Promise((resolve, reject) => {
+            getHistory(id).then((result) => {
+                commit('getHistory', { data: result.data, page: result.page })
+                resolve()
+            }).catch((err) => {
+                reject(err)
+            });
         });
     },
 }

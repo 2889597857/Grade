@@ -1,13 +1,15 @@
 import { getInf } from '@/config/inf.js';
+import { dataTool } from 'echarts';
 export default {
     addHis (state, id) {
-        state.history.push(id)
+        state.history.unshift(id)
     },
     get (state, id) {
         state.information = Object.assign({}, id, getInf(id.role))
     },
     getHistory (state, history) {
-        Object.assign({}, state.history, history)
+        state.history = history.data
+        state.historyPage = history.page
     },
     setFindHistory (state, history) {
         state.FindHistory.unshift(history)
@@ -16,6 +18,9 @@ export default {
         state.exam = value
     },
     getFindGradeID (state, value) {
-        state.findGradeID.unshift(value)
+        const a = state.findGradeID.every(a => a != value)
+        if (a) {
+            state.findGradeID.unshift(value)
+        }
     }
 }
