@@ -39,9 +39,9 @@
         data: [
           { value: 40, name: "90分以上" },
           { value: 38, name: "80-89分" },
-          { value: 50, name: "70-79分" },
-          { value: 30, name: "60-69分" },
-          { value: 28, name: "60分以下" },
+          { value: 40, name: "70-79分" },
+          { value: 33, name: "60-69分" },
+          { value: 35, name: "60分以下" },
         ],
       },
     ],

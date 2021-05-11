@@ -7,10 +7,6 @@ export default {
     get (state, id) {
         state.information = Object.assign({}, id, getInf(id.role))
     },
-    getHistory (state, history) {
-        state.history = history.data
-        state.historyPage = history.page
-    },
     setFindHistory (state, history) {
         state.appendHistory.unshift(history)
     },

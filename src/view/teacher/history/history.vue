@@ -7,7 +7,7 @@
         </ul>
       </div>
       <div class="history-content" v-loading="loading">
-        <ul v-for="(item, index) in state.history" :key="index">
+        <ul v-for="(item, index) in historylist" :key="index">
           <li>{{ item.id }}</li>
           <li>{{ item.name }}</li>
           <li>{{ item.object }}</li>
@@ -34,28 +34,31 @@
 </template>
 
 <script>
-  import { useStore } from "vuex";
-  import myTemplate from "com/Template/Template.vue";
-  import { onMounted, ref, watch } from 'vue';
 
+  import myTemplate from "com/Template/Template.vue";
+  import { onMounted, ref } from 'vue';
+  import { getHistory } from '@/api/history.js';
   export default {
     components: { myTemplate },
     setup () {
-      const store = useStore();
       const historyMenu = ["学号", "姓名", "学科", "操作记录", "操作人", '时间'];
-      let state = store.state;
-      let pages = store.state.historyPage * 10
-      let currentPage = ref(0)
       let loading = ref(true)
+      // 当前页数
+      let currentPage = ref(0)
+      let pages = ref(null)
+      let historylist = ref([])
+      const history = (page) => getHistory(page).then((res) => {
+        historylist.value = res.data
+        pages.value = res.page * 10
+        loading.value = false
+      })
       const handleCurrentChange = (page) => {
         loading.value = true
-        store.dispatch('history', page - 1).then(() => loading.value = false)
+        history(page)
       }
-      onMounted(() => store.dispatch('history', 0).then(() => loading.value = false))
-
+      onMounted(() => { history(0) })
       return {
-        historyMenu,
-        state, handleCurrentChange, currentPage, pages, loading
+        historyMenu, handleCurrentChange, currentPage, pages, loading, historylist
       };
     },
   };
@@ -79,4 +82,4 @@
   .pagination {
     margin: 30px auto;
   }
-</style>
+</style>          

@@ -16,16 +16,6 @@ export default {
             });
         });
     },
-    history ({ commit }, id) {
-        return new Promise((resolve, reject) => {
-            getHistory(id).then((result) => {
-                commit('getHistory', { data: result.data, page: result.page })
-                resolve()
-            }).catch((err) => {
-                reject(err)
-            });
-        });
-    },
     appendHistory ({ commit }, id) {
         return new Promise((resolve, reject) => {
             appendAll(id).then((result) => {

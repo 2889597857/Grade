@@ -13,7 +13,7 @@
         tooltip: {},
         legend: {},
         radar: {
-          name: {
+          axisName: {
             color: "#fff",
             backgroundColor: "#999",
             borderRadius: 5,

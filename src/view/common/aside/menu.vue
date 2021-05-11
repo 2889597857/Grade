@@ -2,7 +2,7 @@
   <el-row class="tac">
     <el-col :span="24">
       <el-menu
-        default-active="1"
+        default-active="0"
         background-color="#283848"
         text-color="#fff"
         active-text-color="#ffd04b"
@@ -13,7 +13,15 @@
             <i class="el-icon-s-tools"></i>
             <span>系统管理</span>
           </template>
-          <item :route="state.information.Route" />
+          <el-menu-item-group>
+            <el-menu-item
+              v-for="(item, index) in state.information.Route"
+              :key="index"
+              :index="item.route"
+              >{{ item.name }}</el-menu-item
+            >
+          </el-menu-item-group>
+          <!-- <item :route="state.information.Route" /> -->
         </el-submenu>
       </el-menu>
     </el-col>
