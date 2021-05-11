@@ -24,14 +24,25 @@ export default [
                 component: () => import('view/student/rate/rate.vue')
             },
             {
-                path: "/find",
-                name: "find",
-                component: () => import('view/common/find/find.vue')
+                path: "/find/teacher",
+                name: "findTeacher",
+                component: () => import('view/common/find/teacher.vue')
             },
             {
-                path: "/analysis",
-                name: "analysis",
-                component: () => import('view/common/analysis/analysis.vue')
+                path: "/find/student",
+                alias: '/findStudent',
+                name: "find",
+                component: () => import('view/common/find/student.vue')
+            },
+            {
+                path: "/analysis/teacher",
+                name: "analysis1",
+                component: () => import('view/common/analysis/teacher.vue')
+            },
+            {
+                path: "/analysis/student",
+                name: "analysis2",
+                component: () => import('view/common/analysis/student.vue')
             },
             {
                 path: "/history",

@@ -1,23 +1,27 @@
 <template>
-  <div class="Template www">
-    <div class="Template-title">
-      <p>{{ title }}</p>
+  <el-scrollbar>
+    <div class="Template www">
+      <div class="Template-title">
+        <p>{{ title }}</p>
+      </div>
+      <div class="Template-content">
+        <slot></slot>
+      </div>
+      <backhome />
+      <el-backtop target=".www"></el-backtop>
     </div>
-    <div class="Template-content">
-      <slot></slot>
-    </div>
-    <backhome />
-  </div>
+  </el-scrollbar>
 </template>
 
 <script>
+  import { ref } from 'vue';
   import backhome from '../backhome/backhome.vue';
   export default {
     components: { backhome },
     props: {
       title: String,
-    },
-  };
+    }
+  }
 </script>
 
 <style lang="scss" scope>

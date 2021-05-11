@@ -1,7 +1,8 @@
 import { getInf } from '@/api/signin';
 import { getHistory } from '@/api/history.js';
-import { rate } from '@/api/rate.js';
 import { getCookie } from '@/lib/utils'
+import { appendAll } from '@/api/append.js';
+import { rate } from '@/api/rate.js';
 
 export default {
     getInformation ({ commit }) {
@@ -15,7 +16,7 @@ export default {
             });
         });
     },
-    history ({ commit, state }, id) {
+    history ({ commit }, id) {
         return new Promise((resolve, reject) => {
             getHistory(id).then((result) => {
                 commit('getHistory', { data: result.data, page: result.page })
@@ -25,4 +26,14 @@ export default {
             });
         });
     },
+    appendHistory ({ commit }, id) {
+        return new Promise((resolve, reject) => {
+            appendAll(id).then((result) => {
+                commit('appendHistory', result, id)
+                resolve()
+            }).catch((err) => {
+                reject(err)
+            });
+        })
+    }
 }

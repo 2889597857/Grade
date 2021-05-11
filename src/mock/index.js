@@ -9,8 +9,7 @@ import { rate } from './mock/rate.js';
 // Mock.mock('/api/login', 'get', login)
 // Mock.mock('/api/find', 'get', find)
 // Mock.mock('/api/history', 'get', history)
-
-Mock.mock('/api/append', 'get', append)
+// Mock.mock('/api/append', 'get', append)
 // 拦截评分请求
 Mock.mock('/api/rate', 'get', rate)
 

@@ -9,7 +9,6 @@ export const getHistory = (id) => {
     });
 };
 export const amend = (history) => {
-    console.log(history)
     return axios.request({
         url: '/api/amend/add',
         method: 'post',

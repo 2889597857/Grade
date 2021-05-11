@@ -12,7 +12,11 @@ export default {
         state.historyPage = history.page
     },
     setFindHistory (state, history) {
-        state.FindHistory.unshift(history)
+        state.appendHistory.unshift(history)
+    },
+    appendHistory (state, history) {
+        state.appendHistory.push(...history.data)
+        state.appendPage = history.page - 1
     },
     changeExam (state, value) {
         state.exam = value

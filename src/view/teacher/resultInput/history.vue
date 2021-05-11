@@ -10,13 +10,14 @@
         </li>
       </ul>
       <div class="history-content">
-        <ul v-for="(item, index) in hisList" :key="`ul${index}`">
+        <ul v-for="(item, index) in hisList.appendHistory" :key="`ul${index}`">
           <li v-for="(i, index) in item" :key="`li${index}`">
             {{ i }}
           </li>
         </ul>
       </div>
-      <div class="his-tips" v-show="isShow"><p>暂无记录</p></div>
+
+      <!-- <div class="his-tips" v-show="isShow"><p>暂无记录</p></div> -->
     </div>
   </div>
 </template>
@@ -25,16 +26,19 @@
   import { computed } from "vue";
   import { useStore } from 'vuex';
   const stroe = useStore()
-  const menu = ["姓名", "学号", "学科", "分数", "操作人", "时间"];
-  const hisList = stroe.state.FindHistory
-  const isShow = computed(() => {
-    if (hisList.length) return false
-    else return true
-  })
+  const menu = ["学号", "姓名", "学科", "分数", "操作人", "时间"];
+  const hisList = stroe.state
+  // const isShow = computed(() => {
+  //   if (hisList.length) return false
+  //   else return true
+  // })
 
 </script>
 
 <style lang="scss" scoped>
+  .result-history {
+    position: relative;
+  }
   .his-title {
     font-size: 20px;
     font-weight: bolder;

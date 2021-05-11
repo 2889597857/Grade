@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <myTemplate :title="'成绩分析'">
     <eLine />
     <eRadar />
-  </div>
+  </myTemplate>
 </template>
 
 <script>
