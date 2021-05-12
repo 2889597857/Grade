@@ -19,7 +19,7 @@ export default defineConfig({
       '/foo': 'http://localhost:4567/foo',
       // 选项写法
       '/api': {
-        target: 'http://localhost:3100/',
+        target: 'http://49.235.255.166:3100/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },

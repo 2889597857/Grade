@@ -7,7 +7,10 @@
       <p>* 素材来自网络，侵权必删</p>
     </div>
     <a target="_blank" href="https://github.com/2889597857/Grade"
-      >https://github.com/2889597857/Grade</a
+      >前端项目：https://github.com/2889597857/Grade</a
+    >
+    <a target="_blank" href="https://github.com/2889597857/management"
+      >后端api接口：https://github.com/2889597857/management</a
     >
   </div>
 </template>

@@ -7,8 +7,4 @@ export default createStore({
     state,
     mutations,
     actions,
-
-    // plugins: [
-    //     createPersistedState(),
-    // ],
 });
