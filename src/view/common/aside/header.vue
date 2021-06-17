@@ -11,10 +11,10 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
-              <router-link to="/information">个人信息</router-link>
+              <router-link to="/account/information">个人信息</router-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <router-link to="/change">修改密码 </router-link>
+              <router-link to="/account/change">修改密码 </router-link>
             </el-dropdown-item>
             <el-dropdown-item divided @click="out">安全退出</el-dropdown-item>
           </el-dropdown-menu>

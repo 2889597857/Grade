@@ -27,7 +27,7 @@
 <style lang="scss" scope>
   .Template {
     width: 95%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 150px);
     margin: 0 auto;
     position: relative;
     padding: 40px 10px 20px;

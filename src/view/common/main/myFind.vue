@@ -25,6 +25,6 @@
 <style lang="scss" scoped>
   .find {
     width: 50%;
-    height: 60px;
+    height: 50px;
   }
 </style>

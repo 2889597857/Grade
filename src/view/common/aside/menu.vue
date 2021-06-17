@@ -22,6 +22,16 @@
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+        <el-submenu index="2">
+          <template #title>
+            <i class="el-icon-notebook-1"></i>
+            <span>其他设置</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/other/other1"> 其他设置1 </el-menu-item>
+            <el-menu-item index="/other/other2"> 其他设置2 </el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
       </el-menu>
     </el-col>
   </el-row>
