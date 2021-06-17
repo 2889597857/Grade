@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { getCookie } from '@/lib/utils';
+import baseURL from '@/config/api';
 class HttpRequest {
-    constructor(baseUrl) {
+    constructor(baseUrl = baseURL) {
         this.baseURL = baseUrl;
         this.queue = {}; //请求队列
     }

@@ -71,9 +71,9 @@
             // setCookie(result.role)
             router.push({ name: 'index' });
           }
-        }).catch(() => {
+        }).catch((err) => {
           ruleForm.checkPass = ''
-          alert('账号或密码错误')
+          alert(err)
         });
       } else {
         return false;
