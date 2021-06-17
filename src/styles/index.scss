@@ -44,12 +44,26 @@ li {
 		justify-content: center;
 		align-items: center;
 		width: 650px;
-		height: 50px;
 		border-bottom: 1.5px solid #ebeef5;
 		margin: 0 auto;
 		li {
 			width: 80px;
+			height: 50px;
 		}
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.find-content {
+		display: flex;
+	}
+	.find-content .history-title,
+	.find-content .history-content {
+		flex-direction: column;
+	}
+	.find-content .history-title li,
+	.find-content .history-content li {
+		height: 30px;
 	}
 }
 ::-webkit-scrollbar-track-piece {

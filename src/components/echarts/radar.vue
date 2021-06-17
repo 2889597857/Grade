@@ -67,8 +67,8 @@
 </script>
 <style lang="scss" scope`>
   .echart-radar {
-    width: 720px;
-    height: 720px;
+    width: 100%;
+    height: 500px;
     margin: 0 auto;
   }
 </style>

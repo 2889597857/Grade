@@ -1,4 +1,5 @@
 <template>
+  <div class="inf"></div>
   <explain />
 </template>
 
@@ -7,8 +8,6 @@
   export default {
     components: { explain },
     setup () {
-
-
       return {}
     }
   }

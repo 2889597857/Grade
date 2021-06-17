@@ -85,7 +85,7 @@
 </script>
 <style lang="scss" scope`>
   .echart-line {
-    width: 720px;
+    width: 100%;
     height: 400px;
     margin: 0 auto;
   }

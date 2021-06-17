@@ -30,11 +30,14 @@
     height: calc(100vh - 150px);
     margin: 0 auto;
     position: relative;
-    padding: 40px 10px 20px;
+    padding: 20px 10px 20px;
     overflow: auto;
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+    }
     .Template-title {
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 600;
       height: 50px;
       line-height: 50px;
     }

@@ -5,12 +5,15 @@ export default [
     {
         path: '/',
         component: () => import('view/home/home.vue'),
-        component: () => import('view/home/home.vue'),
-        name: "home",
         meta: {
             title: "首页"
         },
         children: [
+            {
+                path: '/',
+                name: "home",
+                component: () => import('view/home/index.vue'),
+            },
             {
                 path: 'system',
                 component: () => import('view/home/system.vue'),
